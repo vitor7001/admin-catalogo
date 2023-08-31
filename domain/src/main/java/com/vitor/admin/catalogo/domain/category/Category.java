@@ -1,6 +1,7 @@
 package com.vitor.admin.catalogo.domain.category;
 
 import com.vitor.admin.catalogo.domain.AggregateRoot;
+import com.vitor.admin.catalogo.domain.validation.ValidationHandler;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -42,6 +43,10 @@ public class Category extends AggregateRoot<CategoryID> {
         return new Category(id, aName, aDescription, isActive, now, now, null);
     }
 
+    @Override
+    public void validate(final ValidationHandler handler) {
+        new CategoryValidator(this, handler).validate();
+    }
 
     public CategoryID getId() {
         return id;

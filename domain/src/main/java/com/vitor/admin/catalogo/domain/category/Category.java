@@ -62,6 +62,15 @@ public class Category extends AggregateRoot<CategoryID> {
 
     }
 
+    public Category activate() {
+
+        this.deletedAt = null;
+        this.active = true;
+        this.updatedAt = Instant.now();
+
+        return this;
+    }
+
     public CategoryID getId() {
         return id;
     }
@@ -113,6 +122,5 @@ public class Category extends AggregateRoot<CategoryID> {
     public void setDeletedAt(Instant deletedAt) {
         this.deletedAt = deletedAt;
     }
-
 
 }

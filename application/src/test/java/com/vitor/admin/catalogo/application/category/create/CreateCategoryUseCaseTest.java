@@ -111,4 +111,26 @@ public class CreateCategoryUseCaseTest {
                 ));
     }
 
+    @Test
+    public void givenAValidCommand_whenGatewayThrowsRandomException_shouldAException() {
+        final var expectedName = "Filmes";
+        final var expectedDescription = "A categoria mais assistida";
+        final var expectedIsActive = true;
+
+        final var expectedErrorMessage = "Gateway error";
+
+        final var aCommand =
+                CreateCategoryCommand.with(expectedName, expectedDescription, expectedIsActive);
+
+        when(categoryGateway.create(any()))
+                .thenThrow(new IllegalStateException(expectedErrorMessage));
+
+        final var actualException = Assertions.assertThrows(IllegalStateException.class, () -> {
+            useCase.execute(aCommand);
+        });
+
+        Assertions.assertEquals(expectedErrorMessage, actualException.getMessage());
+
+        Mockito.verify(categoryGateway, times(1)).create(any());
+    }
 }

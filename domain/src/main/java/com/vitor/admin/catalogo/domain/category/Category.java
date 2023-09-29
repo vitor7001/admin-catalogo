@@ -6,7 +6,7 @@ import com.vitor.admin.catalogo.domain.validation.ValidationHandler;
 import java.time.Instant;
 import java.util.UUID;
 
-public class Category extends AggregateRoot<CategoryID> {
+public class Category extends AggregateRoot<CategoryID> implements Cloneable{
 
     private String name;
     private String description;
@@ -140,4 +140,13 @@ public class Category extends AggregateRoot<CategoryID> {
         this.deletedAt = deletedAt;
     }
 
+
+    @Override
+    public Category clone() {
+        try {
+            return (Category) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

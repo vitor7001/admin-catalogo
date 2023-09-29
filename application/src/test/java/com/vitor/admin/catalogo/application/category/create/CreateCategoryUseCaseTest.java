@@ -4,6 +4,7 @@ import com.vitor.admin.catalogo.domain.category.CategoryGateway;
 import com.vitor.admin.catalogo.domain.exceptions.DomainException;
 import com.vitor.admin.catalogo.domain.validation.handler.Notification;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.AdditionalAnswers;
@@ -28,6 +29,11 @@ public class CreateCategoryUseCaseTest {
 
     @Mock
     private CategoryGateway categoryGateway;
+
+    @BeforeEach
+    void cleanUp(){
+        Mockito.reset(categoryGateway);
+    }
 
     @Test
     public void givenAValidCommand_whenCallsCreateCategory_shouldReturnCategoryId() {
@@ -58,7 +64,6 @@ public class CreateCategoryUseCaseTest {
                         }
                 ));
     }
-
 
     @Test
     public void givenAInvalidName_whenCallsCreateCategory_thenShouldReturnDomainException(){

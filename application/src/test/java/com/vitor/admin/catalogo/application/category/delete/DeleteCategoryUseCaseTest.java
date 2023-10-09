@@ -30,7 +30,7 @@ public class DeleteCategoryUseCaseTest {
     }
 
     @Test
-    public void givenAValidId_whenCallsDeleteCategory_shoudBeOk(){
+    public void givenAValidId_whenCallsDeleteCategory_shouldBeOk(){
         Category aCategory = Category.newCategory("Filmes", "A categoria mais assistida", true);
         final var expectedId = aCategory.getId();
 
@@ -42,7 +42,7 @@ public class DeleteCategoryUseCaseTest {
     }
 
     @Test
-    public void givenAInvalidId_whenCallsDeleteCategory_shoudBeOk(){
+    public void givenAInvalidId_whenCallsDeleteCategory_shouldBeOk(){
         final var expectedId = CategoryID.from("123");
 
         doNothing()
@@ -53,7 +53,7 @@ public class DeleteCategoryUseCaseTest {
     }
 
     @Test
-    public void givenAValidId_whenGatewayThrowsError_shoudReturnException(){
+    public void givenAValidId_whenGatewayThrowsError_shouldReturnException(){
         Category aCategory = Category.newCategory("Filmes", "A categoria mais assistida", true);
         final var expectedId = aCategory.getId();
 

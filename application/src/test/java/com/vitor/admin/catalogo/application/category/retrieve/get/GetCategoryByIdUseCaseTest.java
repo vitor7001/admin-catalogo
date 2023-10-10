@@ -1,4 +1,4 @@
-package com.vitor.admin.catalogo.application.category.retrieve;
+package com.vitor.admin.catalogo.application.category.retrieve.get;
 
 import com.vitor.admin.catalogo.domain.category.Category;
 import com.vitor.admin.catalogo.domain.category.CategoryGateway;
@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 public class GetCategoryByIdUseCaseTest {
 
     @InjectMocks
-    private GetCategoryByIdUseCase useCase;
+    private DefaultGetCategoryByIdUseCase useCase;
 
     @Mock
     private CategoryGateway categoryGateway;
@@ -41,8 +41,6 @@ public class GetCategoryByIdUseCaseTest {
 
         final var expectedId = aCategory.getId();
 
-
-
         when(categoryGateway.findById(eq(expectedId)))
                 .thenReturn(Optional.of(aCategory.clone()));
 
@@ -52,15 +50,15 @@ public class GetCategoryByIdUseCaseTest {
         Assertions.assertEquals(expectedName, actualCategory.name());
         Assertions.assertEquals(expectedDescription, actualCategory.description());
         Assertions.assertEquals(expectedIsActive, actualCategory.isActive());
-        Assertions.assertEquals(actualCategory.getCreatedAt(), actualCategory.getCreatedAt());
-        Assertions.assertEquals(actualCategory.getUpdatedAt(), actualCategory.getUpdatedAt());
-        Assertions.assertEquals(actualCategory.getDeletedAt(), actualCategory.getDeletedAt());
+        Assertions.assertEquals(aCategory.getCreatedAt(), actualCategory.createdAt());
+        Assertions.assertEquals(aCategory.getUpdatedAt(), actualCategory.updatedAt());
+        Assertions.assertEquals(aCategory.getDeletedAt(), actualCategory.deletedAt());
 
     }
 
     @Test
     public void givenAInvalidId_whenCallsGetCategory_shouldReturnNotFound() {
-        final var expectedErrorMessage = "";
+        final var expectedErrorMessage = "Category with ID 123 was not found";
         final var expectedId = CategoryID.from("123");
 
         when(categoryGateway.findById(eq(expectedId)))

@@ -5,20 +5,11 @@ import com.vitor.admin.catalogo.infrastructure.MySQLGatewayTest;
 import com.vitor.admin.catalogo.infrastructure.category.persistence.CategoryJpaEntity;
 import com.vitor.admin.catalogo.infrastructure.category.persistence.CategoryRepository;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.Collection;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 @MySQLGatewayTest
 public class CategoryMySQLGatewayTest {
@@ -28,12 +19,11 @@ public class CategoryMySQLGatewayTest {
 
     @Autowired
     private CategoryRepository categoryRepository;
-
     @Test
-    public void givenAValidCategory_whenCallsCreate_shouldReturnANewCategory(){
+    public void givenAValidCategory_whenCallsCreate_shouldReturnANewCategory() {
         final var expectedName = "Filmes";
         final var expectedDescription = "A categoria mais assistida";
-        final var expectedIsActive =  true;
+        final var expectedIsActive = true;
 
         final var aCategory = Category.newCategory(expectedName, expectedDescription, expectedIsActive);
 
@@ -64,12 +54,11 @@ public class CategoryMySQLGatewayTest {
         Assertions.assertNull(actualEntity.getDeletedAt());
     }
 
-
     @Test
-    public void givenAValidCategory_whenCallsUpdate_shouldReturnCategoryUpdated(){
+    public void givenAValidCategory_whenCallsUpdate_shouldReturnCategoryUpdated() {
         final var expectedName = "Filmes";
         final var expectedDescription = "A categoria mais assistida";
-        final var expectedIsActive =  true;
+        final var expectedIsActive = true;
 
         final var aCategory = Category.newCategory("Film", null, expectedIsActive);
 
@@ -86,7 +75,7 @@ public class CategoryMySQLGatewayTest {
         Assertions.assertEquals(expectedIsActive, actualInvalidEntity.isActive());
 
         final var aUpdatedCategory = aCategory.clone()
-                .update(expectedName,expectedDescription,expectedIsActive);
+                .update(expectedName, expectedDescription, expectedIsActive);
 
         final var actualCategory = categoryGateway.update(aUpdatedCategory);
 

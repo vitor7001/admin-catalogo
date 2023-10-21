@@ -216,7 +216,7 @@ public class CategoryMySQLGatewayTest {
         Assertions.assertEquals(expectedPage, actualResult.currentPage());
         Assertions.assertEquals(expectedPerPage, actualResult.perPage());
         Assertions.assertEquals(expectedTotal, actualResult.total());
-        Assertions.assertEquals(expectedPerPage, actualResult.items().size());
+        Assertions.assertEquals(0, actualResult.items().size());
     }
 
     @Test
@@ -262,7 +262,7 @@ public class CategoryMySQLGatewayTest {
 
         //Page 2
         expectedPage = 2;
-        query = new CategorySearchQuery(1,1,"","name", "asc");
+        query = new CategorySearchQuery(2,1,"","name", "asc");
         actualResult = categoryGateway.findAll(query);
 
         Assertions.assertEquals(expectedPage, actualResult.currentPage());

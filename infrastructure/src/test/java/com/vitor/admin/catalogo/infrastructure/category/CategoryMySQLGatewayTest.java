@@ -3,7 +3,7 @@ package com.vitor.admin.catalogo.infrastructure.category;
 import com.vitor.admin.catalogo.domain.category.Category;
 import com.vitor.admin.catalogo.domain.category.CategoryID;
 import com.vitor.admin.catalogo.domain.category.CategorySearchQuery;
-import com.vitor.admin.catalogo.infrastructure.MySQLGatewayTest;
+import com.vitor.admin.catalogo.MySQLGatewayTest;
 import com.vitor.admin.catalogo.infrastructure.category.persistence.CategoryJpaEntity;
 import com.vitor.admin.catalogo.infrastructure.category.persistence.CategoryRepository;
 import org.junit.jupiter.api.Assertions;

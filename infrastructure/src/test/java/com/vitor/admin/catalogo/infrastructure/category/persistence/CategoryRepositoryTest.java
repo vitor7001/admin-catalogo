@@ -1,9 +1,7 @@
-package com.vitor.admin.catalogo.infrastructure.persistence;
+package com.vitor.admin.catalogo.infrastructure.category.persistence;
 
 import com.vitor.admin.catalogo.domain.category.Category;
-import com.vitor.admin.catalogo.infrastructure.MySQLGatewayTest;
-import com.vitor.admin.catalogo.infrastructure.category.persistence.CategoryJpaEntity;
-import com.vitor.admin.catalogo.infrastructure.category.persistence.CategoryRepository;
+import com.vitor.admin.catalogo.MySQLGatewayTest;
 import org.hibernate.PropertyValueException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

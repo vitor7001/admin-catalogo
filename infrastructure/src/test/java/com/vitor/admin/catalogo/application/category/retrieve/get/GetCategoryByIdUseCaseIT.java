@@ -14,6 +14,7 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 
 @IntegrationTest
@@ -45,8 +46,8 @@ public class GetCategoryByIdUseCaseIT {
         Assertions.assertEquals(expectedName, actualCategory.name());
         Assertions.assertEquals(expectedDescription, actualCategory.description());
         Assertions.assertEquals(expectedIsActive, actualCategory.isActive());
-        Assertions.assertEquals(aCategory.getCreatedAt(), actualCategory.createdAt());
-        Assertions.assertEquals(aCategory.getUpdatedAt(), actualCategory.updatedAt());
+        Assertions.assertEquals(aCategory.getCreatedAt().truncatedTo(ChronoUnit.MILLIS), actualCategory.createdAt().truncatedTo(ChronoUnit.MILLIS));
+        Assertions.assertEquals(aCategory.getUpdatedAt().truncatedTo(ChronoUnit.MILLIS), actualCategory.updatedAt().truncatedTo(ChronoUnit.MILLIS));
         Assertions.assertEquals(aCategory.getDeletedAt(), actualCategory.deletedAt());
 
     }

@@ -9,4 +9,8 @@ public record CreateCategoryOutput(
     public static  CreateCategoryOutput from(final Category aCategory){
         return new CreateCategoryOutput(aCategory.getId());
     }
+
+    public static  CreateCategoryOutput from(final CategoryID anId){
+        return new CreateCategoryOutput(anId);
+    }
 }
